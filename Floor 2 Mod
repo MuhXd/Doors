@@ -119,8 +119,8 @@ local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/Reg
 
 
 
-
-
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+task.wait()
 
 -- Sounds
 game.Workspace.Ambience_Figure.SoundId = game.Workspace.Ambience_FigureIntense.SoundId
@@ -133,13 +133,11 @@ end
 game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Frame["Floors Escaped"].Text = "Floors Escaped (2)"
 
 --[[ Lighting Setup
-while task.wait(0.00005) do
 	game.Lighting.Ambient = Color3.new(0, 0, 0)
 	game.Lighting.Caves.Enabled = true
 	game.Lighting.Bloom.Enabled = true
 	game.Lighting.FogEnd = "75"
 	game.Lighting.FogStart = "10"
-end
 ]]
 
 -- Figure Room Setup (50)
@@ -157,7 +155,6 @@ if game.ReplicatedStorage.GameData.LatestRoom.Value == 100 then
 end
 
 -- Room Setup (Loop)
-while task.wait(0.000005) do
 game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Frame["Floors Escaped"].Text = "Floors Escaped (2)" -- if you escaped it will make it floors escaped 2
     for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
   if v:IsA("BasePart") then
@@ -177,3 +174,4 @@ game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Frame["Floors Escaped"].Tex
 		game.Lighting.FogEnd = "75"
 		game.Lighting.FogStart = "10"
 	end
+end)
